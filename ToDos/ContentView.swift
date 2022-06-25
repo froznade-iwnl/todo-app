@@ -8,9 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var todos = [
+        Todo(title: "Watch things", isDone: true),
+        Todo(title: "Eat lunch"),
+        Todo(title: "Sleep")
+    ]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        NavigationView{
+                
+                List(todos) { todo in
+                    HStack {
+                        Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
+                    
+                        Text("\(todo.title)")
+                    }
+                }
+                .navigationTitle("Lyfe")
+            
+        }
+        
+        
     }
 }
 
