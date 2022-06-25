@@ -19,14 +19,24 @@ struct ContentView: View {
         
         NavigationView{
                 
-                List(todos) { todo in
-                    HStack {
-                        Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
-                    
-                        Text("\(todo.title)\(todo.Priority == .veryImportant ? "!!" : todo.Priority == .important ? "!":"")")
-                            .foregroundColor(setColor(myColor: todo.Priority))
-                            .strikethrough(todo.isDone)
+                List($todos) { $todo in
+                    NavigationLink {
+                        TodoDetailView(todo: $todo)
+                    } label: {
+                        HStack {
+                            Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(setColor(myColor: todo.Priority))
+                        
+                            Text("\(todo.title)")
+                                .foregroundColor(setColor(myColor: todo.Priority))
+                                .strikethrough(todo.isDone)
                             
+                            Spacer()
+                            
+                            Text("\(todo.Priority == .veryImportant ? "!!" : todo.Priority == .important ? "!":"")")
+                                .foregroundColor(setColor(myColor: todo.Priority))
+                            
+                        }
                     }
                 }
                 .navigationTitle("Lyfe")

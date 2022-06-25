@@ -17,7 +17,7 @@ struct Todo: Identifiable {
     
     var title: String
     var isDone : Bool = false
-    var Priority: Priority
+    var Priority: Priority = .notImportant
     var color = "black"
 
     
