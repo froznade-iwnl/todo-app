@@ -23,8 +23,9 @@ struct ContentView: View {
                     HStack {
                         Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
                     
-                        Text("\(todo.title)")
+                        Text("\(todo.title)\(todo.Priority == .veryImportant ? "!!" : todo.Priority == .important ? "!":"")")
                             .foregroundColor(setColor(myColor: todo.Priority))
+                            .strikethrough(todo.isDone)
                             
                     }
                 }
